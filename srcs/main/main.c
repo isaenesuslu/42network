@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iuslu <iuslu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:08:52 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/15 15:08:53 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/15 15:56:17 by iuslu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (!is_sorted(a))
 	{
 		if (stack_size(a) <= 5)
-			sort_tiny(&a, &b);
+			sort(&a, &b);
 		else
 			turk_sort(&a, &b);
 	}
