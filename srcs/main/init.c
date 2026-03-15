@@ -1,18 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 15:08:49 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/15 15:08:50 by ybalkan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ps.h"
 
-void	init_stack(t_node **a, int argc, char **argv)
+t_mode	ps_stack_init(t_node **stack_a, int argc, char **argv)
 {
-	/* Argümanları parse et ve stack_a'yı doldur */
+	return (ps_parse_input(argc, argv, stack_a));
 }
+

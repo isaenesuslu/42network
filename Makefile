@@ -10,8 +10,8 @@ OBJS_DIR    = objs/
 MAIN_FILES  = main/main.c main/init.c main/exit.c
 PARS_FILES  = parsing/parser.c parsing/check.c parsing/split.c
 OPS_FILES   = ops/push.c ops/swap.c ops/rotate.c ops/rrotate.c
-ALGO_FILES  = algo/sort.c algo/turk.c algo/cost.c
-UTIL_FILES  = utils/stack.c utils/list.c utils/error.c
+ALGO_FILES  = algo/turk.c algo/sort.c algo/cost.c
+UTIL_FILES  = utils/stack.c utils/list.c utils/algo.c utils/algo_utils.c
 
 SRC_FILES   = $(MAIN_FILES) $(PARS_FILES) $(OPS_FILES) $(ALGO_FILES) $(UTIL_FILES)
 

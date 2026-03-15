@@ -1,23 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 15:08:46 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/15 15:08:47 by ybalkan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ps.h"
 
-void	free_stack(t_node **stack)
+void	ps_free_all(t_node **stack)
 {
-	/* Stack'i temizle */
+	t_node	*curr;
+	t_node	*tmp;
+
+	if (!stack || !*stack)
+		return ;
+	curr = *stack;
+	while (curr)
+	{
+		tmp = curr->next;
+		free(curr);
+		curr = tmp;
+	}
+	*stack = NULL;
 }
 
-void	error_exit(t_node **a, t_node **b)
+void	ps_error_exit(t_node **stack_a, t_node **stack_b)
 {
-	/* Stackleri temizle ve Error yazdır */
+	if (stack_a)
+		ps_free_all(stack_a);
+	if (stack_b)
+		ps_free_all(stack_b);
+	write(2, "Error\n", 6);
+	exit(1);
 }

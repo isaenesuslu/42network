@@ -1,18 +1,26 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iuslu <iuslu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 15:08:39 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/15 16:14:51 by iuslu            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "algo.h"
+#include "ops.h"
 
-void	sort_tiny(t_node **a, t_node **b)
+void	sort_three(t_node **a)
 {
-	/* 3 ve 5 sayı çözümü */
+	int	max;
+
+	if (ps_is_sorted(*a))
+		return ;
+	max = find_max_val(*a);
+	if ((*a)->value == max)
+		ra(a, true);
+	else if ((*a)->next->value == max)
+		rra(a, true);
+	if ((*a)->value > (*a)->next->value)
+		sa(a, true);
+}
+
+void	ps_sort_small(t_node **a, t_node **b)
+{
+	while (ps_get_size(*a) > 3 && !ps_is_sorted(*a))
+		ps_push_cheapest_to_b(a, b);
+	sort_three(a);
+	while (*b)
+		pa(a, b, true);
 }
