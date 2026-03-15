@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 21:26:00 by ybalkan           #+#    #+#             */
 /*   Updated: 2026/03/15 21:26:00 by ybalkan          ###   ########.fr       */
@@ -11,8 +11,39 @@
 /* ************************************************************************** */
 
 #include "ps.h"
+#include "algo.h"
+#include "ops.h"
 
-t_mode	ps_stack_init(t_node **stack_a, int argc, char **argv)
+void	ps_dispatch_sort(t_node **a, t_node **b, int size)
 {
-	return (ps_parse_input(argc, argv, stack_a));
+	if (size <= 5)
+	{
+		if (size == 2)
+			sa(a, true);
+		else if (size == 3)
+			sort_three(a);
+		else
+			ps_sort_small(a, b);
+	}
+	else
+		ps_sort_engine(a, b);
+}
+
+void	ps_print_bench(int n)
+{
+	char	buf[12];
+	int		i;
+
+	write(1, "Total moves: ", 13);
+	i = 0;
+	if (n == 0)
+		buf[i++] = '0';
+	while (n > 0)
+	{
+		buf[i++] = (n % 10) + '0';
+		n /= 10;
+	}
+	while (i-- > 0)
+		write(1, &buf[i], 1);
+	write(1, "\n", 1);
 }

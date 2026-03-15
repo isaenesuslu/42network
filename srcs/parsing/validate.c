@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 21:26:00 by ybalkan           #+#    #+#             */
 /*   Updated: 2026/03/15 21:26:00 by ybalkan          ###   ########.fr       */
@@ -12,7 +12,31 @@
 
 #include "ps.h"
 
-t_mode	ps_stack_init(t_node **stack_a, int argc, char **argv)
+bool	ps_check_number(char *str)
 {
-	return (ps_parse_input(argc, argv, stack_a));
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (false);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	ps_check_duplicates(t_node *stack, int num)
+{
+	while (stack)
+	{
+		if (stack->value == num)
+			return (true);
+		stack = stack->next;
+	}
+	return (false);
 }

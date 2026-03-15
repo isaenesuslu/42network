@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/15 20:49:47 by ybalkan           #+#    #+#             */
+/*   Updated: 2026/03/15 21:33:00 by ybalkan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "algo.h"
 #include "ops.h"
 
@@ -61,6 +73,28 @@ int	find_min_pos(t_node *stack)
 	return (min_pos);
 }
 
+void	ps_set_rank_indices(t_node *stack)
+{
+	t_node	*curr;
+	t_node	*runner;
+	int		rank;
+
+	curr = stack;
+	while (curr)
+	{
+		rank = 0;
+		runner = stack;
+		while (runner)
+		{
+			if (curr->value > runner->value)
+				rank++;
+			runner = runner->next;
+		}
+		curr->index = rank;
+		curr = curr->next;
+	}
+}
+
 void	ps_finalize_rotation(t_node **a)
 {
 	int	min_pos;
@@ -75,14 +109,3 @@ void	ps_finalize_rotation(t_node **a)
 		while (min_pos-- > 0)
 			ra(a, true);
 }
-
-int	ps_strcmp(const char *s1, const char *s2)
-{
-	while (*s1 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
-

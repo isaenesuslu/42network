@@ -1,60 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 20:49:55 by ybalkan           #+#    #+#             */
+/*   Created: 2026/03/15 21:33:00 by ybalkan           #+#    #+#             */
 /*   Updated: 2026/03/15 21:33:00 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	ps_get_size(t_node *stack)
+t_node	*ps_node_new(int value)
 {
-	int	size;
+	t_node	*new;
 
-	size = 0;
-	while (stack)
-	{
-		size++;
-		stack = stack->next;
-	}
-	return (size);
-}
-
-bool	ps_is_sorted(t_node *stack)
-{
-	if (!stack)
-		return (true);
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
-void	ps_set_positions(t_node *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		stack->pos = i++;
-		stack = stack->next;
-	}
-}
-
-t_node	*ps_get_last(t_node *stack)
-{
-	if (!stack)
+	new = malloc(sizeof(t_node));
+	if (!new)
 		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	new->value = value;
+	new->index = 0;
+	new->pos = 0;
+	new->target_pos = 0;
+	new->cost_a = 0;
+	new->cost_b = 0;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
+void	ps_node_add_back(t_node **stack, t_node *new)
+{
+	t_node	*last;
+
+	if (!stack || !new)
+		return ;
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	last = ps_get_last(*stack);
+	last->next = new;
+	new->prev = last;
 }
