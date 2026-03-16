@@ -6,13 +6,11 @@
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:25 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 13:18:51 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 14:08:26 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ops.h"
-
-extern int	g_move_count;
 
 static void	swap(t_node **stack)
 {
@@ -29,33 +27,36 @@ static void	swap(t_node **stack)
 	(*stack)->next->index = tmp_idx;
 }
 
-void	sa(t_node **a, bool print)
+void	sa(t_node **a, bool print, int *move_count)
 {
 	swap(a);
 	if (print)
 	{
 		write(1, "sa\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	sb(t_node **b, bool print)
+void	sb(t_node **b, bool print, int *move_count)
 {
 	swap(b);
 	if (print)
 	{
 		write(1, "sb\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	ss(t_node **a, t_node **b, bool print)
+void	ss(t_node **a, t_node **b, bool print, int *move_count)
 {
 	swap(a);
 	swap(b);
 	if (print)
 	{
 		write(1, "ss\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
