@@ -5,7 +5,7 @@ CFLAGS      = -Wall -Wextra -Werror -Iincludes
 SRCS_DIR    = srcs/
 OBJS_DIR    = objs/
 
-MAIN_FILES  = main/main.c main/init.c main/exit.c main/bench.c
+MAIN_FILES  = main/main.c main/init.c main/exit.c main/flag.c
 PARS_FILES  = parsing/parser.c parsing/check.c parsing/string.c parsing/help.c
 OPS_FILES   = ops/push.c ops/swap.c ops/rotate.c ops/rrotate.c
 ALGO_FILES  = algo/engine.c algo/short.c
