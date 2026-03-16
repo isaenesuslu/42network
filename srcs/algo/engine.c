@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:56:00 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:55:09 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 14:13:55 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
 #include "ops.h"
 
-static void	push_to_b_butterfly(t_node **a, t_node **b, int size,
-				int *move_count)
+static void	push_to_b_butterfly(t_node **a, t_node **b, int size, int *move_count)
 {
 	int	counter;
 	int	chunk;
