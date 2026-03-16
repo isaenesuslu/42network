@@ -95,7 +95,7 @@ void	ps_set_rank_indices(t_node *stack)
 	}
 }
 
-void	ps_finalize_rotation(t_node **a)
+void	ps_finalize_rotation(t_node **a, int *move_count)
 {
 	int	min_pos;
 	int	size;
@@ -104,8 +104,8 @@ void	ps_finalize_rotation(t_node **a)
 	min_pos = find_min_pos(*a);
 	if (min_pos > size / 2)
 		while (min_pos++ < size)
-			rra(a, true);
+			rra(a, true, move_count);
 	else
 		while (min_pos-- > 0)
-			ra(a, true);
+			ra(a, true, move_count);
 }
