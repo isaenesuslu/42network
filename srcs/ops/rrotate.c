@@ -12,8 +12,6 @@
 
 #include "ops.h"
 
-extern int	g_move_count;
-
 static void	reverse_rotate(t_node **stack)
 {
 	t_node	*last;
@@ -28,33 +26,36 @@ static void	reverse_rotate(t_node **stack)
 	*stack = last;
 }
 
-void	rra(t_node **a, bool print)
+void	rra(t_node **a, bool print, int *move_count)
 {
 	reverse_rotate(a);
 	if (print)
 	{
 		write(1, "rra\n", 4);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	rrb(t_node **b, bool print)
+void	rrb(t_node **b, bool print, int *move_count)
 {
 	reverse_rotate(b);
 	if (print)
 	{
 		write(1, "rrb\n", 4);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	rrr(t_node **a, t_node **b, bool print)
+void	rrr(t_node **a, t_node **b, bool print, int *move_count)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
 	if (print)
 	{
 		write(1, "rrr\n", 4);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
