@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:14 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:58:24 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 13:23:48 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ops.h"
 
-int	g_move_count;
+extern int	g_move_count;
 
 static void	push(t_node **src, t_node **dst)
 {
@@ -20,33 +20,33 @@ static void	push(t_node **src, t_node **dst)
 
 	if (!*src)
 		return ;
-	tmp = *src;             
-	*src = (*src)->next;      
+	tmp = *src;
+	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
-	tmp->next = *dst;       
+	tmp->next = *dst;
 	if (*dst)
 		(*dst)->prev = tmp;
-	*dst = tmp;             
+	*dst = tmp;
 	(*dst)->prev = NULL;
 }
 
-void	pa(t_node **a, t_node **b, bool print)
+void	pa(t_node **a, t_node **b, t_game *game, bool print)
 {
-	push(b, a); 
+	push(b, a);
 	if (print)
 	{
 		write(1, "pa\n", 3);
-		g_move_count++;
+		game->move_count++;
 	}
 }
 
-void	pb(t_node **a, t_node **b, bool print)
+void	pb(t_node **a, t_node **b, t_game *game, bool print)
 {
-	push(a, b); 
+	push(a, b);
 	if (print)
 	{
 		write(1, "pb\n", 3);
-		g_move_count++;
+		game->move_count++;
 	}
 }
