@@ -12,8 +12,6 @@
 
 #include "ops.h"
 
-int	g_move_count;
-
 static void	push(t_node **src, t_node **dst)
 {
 	t_node	*tmp;
@@ -31,22 +29,24 @@ static void	push(t_node **src, t_node **dst)
 	(*dst)->prev = NULL;
 }
 
-void	pa(t_node **a, t_node **b, bool print)
+void	pa(t_node **a, t_node **b, bool print, int *move_count)
 {
 	push(b, a);
 	if (print)
 	{
 		write(1, "pa\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	pb(t_node **a, t_node **b, bool print)
+void	pb(t_node **a, t_node **b, bool print, int *move_count)
 {
 	push(a, b);
 	if (print)
 	{
 		write(1, "pb\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
