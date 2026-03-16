@@ -6,7 +6,7 @@
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 10:48:42 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 14:09:09 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 23:47:43 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef enum e_mode
 	MODE_COMPLEX,
 	MODE_ADAPTIVE
 }	t_mode;
+
+extern t_mode	g_mode;
 
 typedef struct s_node
 {
