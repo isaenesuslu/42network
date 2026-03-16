@@ -14,19 +14,19 @@
 #include "algo.h"
 #include "ops.h"
 
-void	ps_dispatch_sort(t_node **a, t_node **b, int size)
+void	ps_dispatch_sort(t_node **a, t_node **b, int size, int *move_count)
 {
 	if (size <= 5)
 	{
 		if (size == 2)
-			sa(a, true);
+			sa(a, true, move_count);
 		else if (size == 3)
-			sort_three(a);
+			sort_three(a, move_count);
 		else
-			ps_sort_small(a, b);
+			ps_sort_small(a, b, move_count);
 	}
 	else
-		ps_sort_engine(a, b);
+		ps_sort_engine(a, b, move_count);
 }
 
 void	ps_print_bench(int n)
