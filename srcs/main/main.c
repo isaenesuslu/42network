@@ -6,7 +6,7 @@
 /*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:49:04 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:57:29 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 12:44:11 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include "ops.h"
 
 extern int	g_move_count;
+
+static void	ps_parse_bench(int *argc, char ***argv, bool *bench)
+{
+	if (ps_strcmp((*argv)[1], "--bench") == 0)
+	{
+		*bench = true;
+		(*argc)--;
+		(*argv)++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -28,12 +38,7 @@ int	main(int argc, char **argv)
 	g_move_count = 0;
 	if (argc < 2)
 		return (0);
-	if (ps_strcmp(argv[1], "--bench") == 0)
-	{
-		bench = true;
-		argc--;
-		argv++;
-	}
+	ps_parse_bench(&argc, &argv, &bench);
 	ps_stack_init(&a, argc, argv);
 	if (!a || ps_is_sorted(a))
 	{
@@ -46,4 +51,3 @@ int	main(int argc, char **argv)
 	ps_free_all(&a);
 	return (0);
 }
-//Fonksiyon bölünmeli
