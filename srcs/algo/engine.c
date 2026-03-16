@@ -13,7 +13,8 @@
 #include "algo.h"
 #include "ops.h"
 
-static void	push_to_b_butterfly(t_node **a, t_node **b, int size)
+static void	push_to_b_butterfly(t_node **a, t_node **b, int size,
+				int *move_count)
 {
 	int	counter;
 	int	chunk;
@@ -27,21 +28,21 @@ static void	push_to_b_butterfly(t_node **a, t_node **b, int size)
 	{
 		if ((*a)->index <= counter)
 		{
-			pb(a, b, true);
-			rb(b, true);
+			pb(a, b, true, move_count);
+			rb(b, true, move_count);
 			counter++;
 		}
 		else if ((*a)->index <= counter + chunk)
 		{
-			pb(a, b, true);
+			pb(a, b, true, move_count);
 			counter++;
 		}
 		else
-			ra(a, true);
+			ra(a, true, move_count);
 	}
 }
 
-static void	push_back_to_a(t_node **a, t_node **b)
+static void	push_back_to_a(t_node **a, t_node **b, int *move_count)
 {
 	int	size;
 	int	max_pos;
@@ -53,23 +54,23 @@ static void	push_back_to_a(t_node **a, t_node **b)
 		if (max_pos <= size / 2)
 		{
 			while (max_pos--)
-				rb(b, true);
+				rb(b, true, move_count);
 		}
 		else
 		{
 			while (max_pos++ < size)
-				rrb(b, true);
+				rrb(b, true, move_count);
 		}
-		pa(a, b, true);
+		pa(a, b, true, move_count);
 	}
 }
 
-void	ps_sort_engine(t_node **a, t_node **b)
+void	ps_sort_engine(t_node **a, t_node **b, int *move_count)
 {
 	int	size;
 
 	size = ps_get_size(*a);
 	ps_set_rank_indices(*a);
-	push_to_b_butterfly(a, b, size);
-	push_back_to_a(a, b);
+	push_to_b_butterfly(a, b, size, move_count);
+	push_back_to_a(a, b, move_count);
 }
