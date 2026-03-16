@@ -6,13 +6,13 @@
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:14 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 13:23:48 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 13:55:30 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ops.h"
 
-extern int	g_move_count;
+int	g_move_count;
 
 static void	push(t_node **src, t_node **dst)
 {
@@ -31,22 +31,22 @@ static void	push(t_node **src, t_node **dst)
 	(*dst)->prev = NULL;
 }
 
-void	pa(t_node **a, t_node **b, t_game *game, bool print)
+void	pa(t_node **a, t_node **b, bool print)
 {
 	push(b, a);
 	if (print)
 	{
 		write(1, "pa\n", 3);
-		game->move_count++;
+		g_move_count++;
 	}
 }
 
-void	pb(t_node **a, t_node **b, t_game *game, bool print)
+void	pb(t_node **a, t_node **b, bool print)
 {
 	push(a, b);
 	if (print)
 	{
 		write(1, "pb\n", 3);
-		game->move_count++;
+		g_move_count++;
 	}
 }
