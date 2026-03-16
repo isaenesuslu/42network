@@ -6,7 +6,7 @@
 /*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:49:04 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/15 21:26:00 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 11:57:29 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,4 @@ int	main(int argc, char **argv)
 	ps_free_all(&a);
 	return (0);
 }
+//Fonksiyon bölünmeli
