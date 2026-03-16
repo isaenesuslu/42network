@@ -2,11 +2,9 @@ NAME        = push_swap
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -Iincludes
 
-# --- Klasörler ---
 SRCS_DIR    = srcs/
 OBJS_DIR    = objs/
 
-# --- Modüller ---
 MAIN_FILES  = main/main.c main/init.c main/exit.c main/bench.c
 PARS_FILES  = parsing/parser.c parsing/check.c parsing/string.c parsing/help.c
 OPS_FILES   = ops/push.c ops/swap.c ops/rotate.c ops/rrotate.c
@@ -18,7 +16,6 @@ SRC_FILES   = $(MAIN_FILES) $(PARS_FILES) $(OPS_FILES) $(ALGO_FILES) $(UTIL_FILE
 SRCS        = $(addprefix $(SRCS_DIR), $(SRC_FILES))
 OBJS        = $(addprefix $(OBJS_DIR), $(SRC_FILES:.c=.o))
 
-# --- Kurallar ---
 all: $(NAME)
 
 $(NAME): $(OBJS)
