@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:19 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:58:20 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 13:16:36 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ps.h"
 #include "ops.h"
 
 extern int	g_move_count;
@@ -20,12 +21,12 @@ static void	rotate(t_node **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	last = ps_get_last(*stack); 
-	last->next = *stack;        
+	last = ps_get_last(*stack);
+	last->next = *stack;
 	(*stack)->prev = last;
-	*stack = (*stack)->next;    
-	(*stack)->prev->next = NULL; 
-	(*stack)->prev = NULL;       
+	*stack = (*stack)->next;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
 }
 
 void	ra(t_node **a, bool print)
