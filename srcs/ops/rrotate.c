@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rrotate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:21 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:58:14 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 13:17:38 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	reverse_rotate(t_node **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	last = ps_get_last(*stack); 
-	last->prev->next = NULL;    
-	last->next = *stack;        
+	last = ps_get_last(*stack);
+	last->prev->next = NULL;
+	last->next = *stack;
 	last->prev = NULL;
 	(*stack)->prev = last;
-	*stack = last;              
+	*stack = last;
 }
 
 void	rra(t_node **a, bool print)
