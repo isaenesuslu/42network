@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:49:25 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:58:07 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/16 13:18:51 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	swap(t_node **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-
 	tmp_val = (*stack)->value;
 	tmp_idx = (*stack)->index;
 	(*stack)->value = (*stack)->next->value;
