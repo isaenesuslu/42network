@@ -13,8 +13,6 @@
 #include "ps.h"
 #include "ops.h"
 
-extern int	g_move_count;
-
 static void	rotate(t_node **stack)
 {
 	t_node	*last;
@@ -29,33 +27,36 @@ static void	rotate(t_node **stack)
 	(*stack)->prev = NULL;
 }
 
-void	ra(t_node **a, bool print)
+void	ra(t_node **a, bool print, int *move_count)
 {
 	rotate(a);
 	if (print)
 	{
 		write(1, "ra\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	rb(t_node **b, bool print)
+void	rb(t_node **b, bool print, int *move_count)
 {
 	rotate(b);
 	if (print)
 	{
 		write(1, "rb\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
 
-void	rr(t_node **a, t_node **b, bool print)
+void	rr(t_node **a, t_node **b, bool print, int *move_count)
 {
 	rotate(a);
 	rotate(b);
 	if (print)
 	{
 		write(1, "rr\n", 3);
-		g_move_count++;
+		if (move_count)
+			(*move_count)++;
 	}
 }
