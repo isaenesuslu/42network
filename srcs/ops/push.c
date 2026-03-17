@@ -36,7 +36,10 @@ void	pa(t_node **a, t_node **b, bool print, int *move_count)
 	{
 		write(1, "pa\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[4]++;
+		}
 	}
 }
 
@@ -47,6 +50,9 @@ void	pb(t_node **a, t_node **b, bool print, int *move_count)
 	{
 		write(1, "pb\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[5]++;
+		}
 	}
 }

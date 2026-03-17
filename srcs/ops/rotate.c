@@ -34,7 +34,10 @@ void	ra(t_node **a, bool print, int *move_count)
 	{
 		write(1, "ra\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[6]++;
+		}
 	}
 }
 
@@ -45,7 +48,10 @@ void	rb(t_node **b, bool print, int *move_count)
 	{
 		write(1, "rb\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[7]++;
+		}
 	}
 }
 
@@ -57,6 +63,9 @@ void	rr(t_node **a, t_node **b, bool print, int *move_count)
 	{
 		write(1, "rr\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[8]++;
+		}
 	}
 }

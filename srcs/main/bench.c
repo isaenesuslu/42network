@@ -3,47 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybalkan <ybalkan@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/16 21:00:23 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 11:56:39 by ybalkan          ###   ########.fr       */
+/*   Created: 2026/03/17 12:15:00 by ybalkan           #+#    #+#             */
+/*   Updated: 2026/03/17 12:15:00 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
-#include "algo.h"
-#include "ops.h"
 
-void	ps_dispatch_sort(t_node **a, t_node **b, int size, int *move_count)
+static void	print_str_fd(char *s, int fd)
 {
-	if (size <= 5)
-	{
-		if (size == 2)
-			sa(a, true, move_count);
-		else if (size == 3)
-			sort_three(a, move_count);
-		else
-			ps_sort_small(a, b, move_count);
-	}
-	else
-		ps_sort_engine(a, b, move_count);
+	while (*s)
+		write(fd, s++, 1);
 }
 
-void	ps_print_bench(int n)
+static void	print_num_fd(long n, int fd)
 {
-	char	buf[12];
-	int		i;
+	char	c;
 
-	write(1, "Total moves: ", 13);
-	i = 0;
-	if (n == 0)
-		buf[i++] = '0';
-	while (n > 0)
+	if (n < 0)
 	{
-		buf[i++] = (n % 10) + '0';
-		n /= 10;
+		write(fd, "-", 1);
+		n = -n;
 	}
-	while (i-- > 0)
-		write(1, &buf[i], 1);
-	write(1, "\n", 1);
+	if (n >= 10)
+		print_num_fd(n / 10, fd);
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
+}
+
+static void	print_ops_stats(int *moves)
+{
+	print_str_fd("\n[bench] Total operations: ", 2);
+	print_num_fd(moves[0], 2);
+	print_str_fd("\n[bench] sa: ", 2);
+	print_num_fd(moves[1], 2);
+	print_str_fd(", sb: ", 2);
+	print_num_fd(moves[2], 2);
+	print_str_fd(", ss: ", 2);
+	print_num_fd(moves[3], 2);
+	print_str_fd(", pa: ", 2);
+	print_num_fd(moves[4], 2);
+	print_str_fd(", pb: ", 2);
+	print_num_fd(moves[5], 2);
+	print_str_fd("\n[bench] ra: ", 2);
+	print_num_fd(moves[6], 2);
+	print_str_fd(", rb: ", 2);
+	print_num_fd(moves[7], 2);
+	print_str_fd(", rr: ", 2);
+	print_num_fd(moves[8], 2);
+	print_str_fd("\n[bench] rra: ", 2);
+	print_num_fd(moves[9], 2);
+	print_str_fd(", rrb: ", 2);
+	print_num_fd(moves[10], 2);
+	print_str_fd(", rrr: ", 2);
+	print_num_fd(moves[11], 2);
+	print_str_fd("\n", 2);
+}
+
+void	print_bench_stats(int mistakes, int size, int *moves, char *strategy)
+{
+	long	total_pairs;
+	long	disorder_pct;
+
+	total_pairs = (long)size * (size - 1) / 2;
+	if (total_pairs == 0)
+		disorder_pct = 0;
+	else
+		disorder_pct = ((long)mistakes * 10000) / total_pairs;
+	print_str_fd("[bench] Disorder: ", 2);
+	print_num_fd(disorder_pct / 100, 2);
+	print_str_fd(".", 2);
+	if (disorder_pct % 100 < 10)
+		print_str_fd("0", 2);
+	print_num_fd(disorder_pct % 100, 2);
+	print_str_fd("%\n[bench] Strategy: ", 2);
+	print_str_fd(strategy, 2);
+	print_ops_stats(moves);
 }

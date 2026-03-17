@@ -34,7 +34,10 @@ void	sa(t_node **a, bool print, int *move_count)
 	{
 		write(1, "sa\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[1]++;
+		}
 	}
 }
 
@@ -45,7 +48,10 @@ void	sb(t_node **b, bool print, int *move_count)
 	{
 		write(1, "sb\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[2]++;
+		}
 	}
 }
 
@@ -57,6 +63,9 @@ void	ss(t_node **a, t_node **b, bool print, int *move_count)
 	{
 		write(1, "ss\n", 3);
 		if (move_count)
-			(*move_count)++;
+		{
+			move_count[0]++;
+			move_count[3]++;
+		}
 	}
 }

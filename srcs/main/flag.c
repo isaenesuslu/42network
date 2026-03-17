@@ -1,49 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bench.c                                            :+:      :+:    :+:   */
+/*   flag.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 21:00:23 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 23:47:37 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/17 23:47:37 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 #include "algo.h"
+
 #include "ops.h"
 
-void	ps_dispatch_sort(t_node **a, t_node **b, int size, int *move_count)
+static char	*execute_simple(t_node **a, t_node **b, int *moves, int size)
 {
-	if (g_mode == MODE_SIMPLE || (g_mode == MODE_ADAPTIVE && size <= 5))
-	{
-		if (size == 2)
-			sa(a, true, move_count);
-		else if (size == 3)
-			sort_three(a, move_count);
-		else if (size > 1)
-			ps_sort_small(a, b, move_count);
-	}
-	else
-		ps_sort_engine(a, b, move_count);
+	if (size == 2)
+		sa(a, true, moves);
+	else if (size == 3)
+		sort_three(a, moves);
+	else if (size > 1)
+		ps_sort_small(a, b, moves);
+	return ("Simple O(n^2)");
 }
 
-void	ps_print_bench(int n)
+static char	*get_strategy(t_node **a, t_node **b, int *moves,
+			long *stats)
 {
-	char	buf[12];
-	int		i;
+	int		size;
+	char	*strategy;
+	t_mode	mode;
 
-	write(1, "Total moves: ", 13);
-	i = 0;
-	if (n == 0)
-		buf[i++] = '0';
-	while (n > 0)
+	size = ps_get_size(*a);
+	mode = (t_mode)stats[2];
+	if (mode == MODE_SIMPLE || (mode == MODE_ADAPTIVE
+			&& (size <= 5 || (stats[0] > 0 && stats[1] < stats[0] / 5))))
+		strategy = execute_simple(a, b, moves, size);
+	else
 	{
-		buf[i++] = (n % 10) + '0';
-		n /= 10;
+		strategy = "Adaptive O(n log n) engine";
+		if (mode == MODE_COMPLEX)
+			strategy = "Complex O(n log n)";
+		else if (mode == MODE_MEDIUM)
+			strategy = "Medium O(n^1.5)";
+		ps_sort_engine(a, b, moves);
 	}
-	while (i-- > 0)
-		write(1, &buf[i], 1);
-	write(1, "\n", 1);
+	return (strategy);
+}
+
+void	ps_dispatch_sort(t_node **a, t_node **b, int *moves, t_sort_params *p)
+{
+	long	pairs_and_mistakes[3];
+	char	*strategy;
+	int		size;
+
+	size = ps_get_size(*a);
+	pairs_and_mistakes[1] = ps_get_disorder(*a);
+	pairs_and_mistakes[0] = (long)size * (size - 1) / 2;
+	pairs_and_mistakes[2] = p->mode;
+	strategy = get_strategy(a, b, moves, pairs_and_mistakes);
+	if (p->bench)
+		print_bench_stats(pairs_and_mistakes[1], size, moves, strategy);
 }

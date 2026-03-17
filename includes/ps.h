@@ -26,7 +26,11 @@ typedef enum e_mode
 	MODE_ADAPTIVE
 }	t_mode;
 
-extern t_mode	g_mode;
+typedef struct s_sort_params
+{
+	t_mode	mode;
+	bool	bench;
+}	t_sort_params;
 
 typedef struct s_node
 {
@@ -43,8 +47,9 @@ typedef struct s_node
 t_mode	ps_stack_init(t_node **stack_a, int argc, char **argv);
 void	ps_free_all(t_node **stack);
 void	ps_error_exit(t_node **stack_a, t_node **stack_b);
-void	ps_dispatch_sort(t_node **a, t_node **b, int size, int *move_count);
-void	ps_print_bench(int n);
+void	ps_dispatch_sort(t_node **a, t_node **b, int *moves, t_sort_params *p);
+void	print_bench_stats(int mistakes, int size, int *moves, char *strategy);
+int		ps_get_disorder(t_node *stack);
 
 t_mode	ps_parse_input(int argc, char **argv, t_node **stack_a);
 bool	ps_check_number(char *str);
