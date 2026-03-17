@@ -6,13 +6,12 @@
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 21:00:23 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/17 23:47:37 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/17 13:59:52 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 #include "algo.h"
-
 #include "ops.h"
 
 static char	*execute_simple(t_node **a, t_node **b, int *moves, int size)
