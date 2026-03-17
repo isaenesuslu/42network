@@ -6,14 +6,12 @@
 /*   By: ybalkan <ybalkan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 20:49:04 by ybalkan           #+#    #+#             */
-/*   Updated: 2026/03/16 23:43:09 by ybalkan          ###   ########.fr       */
+/*   Updated: 2026/03/17 17:36:05 by ybalkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 #include "algo.h"
-#include "ops.h"
-
 #include "ops.h"
 
 static void	ps_parse_flags(int *argc, char ***argv, t_sort_params *p)
