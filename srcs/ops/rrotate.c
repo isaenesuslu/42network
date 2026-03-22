@@ -53,18 +53,3 @@ void	rrb(t_node **b, bool print, int *move_count)
 		}
 	}
 }
-
-void	rrr(t_node **a, t_node **b, bool print, int *move_count)
-{
-	reverse_rotate(a);
-	reverse_rotate(b);
-	if (print)
-	{
-		write(1, "rrr\n", 4);
-		if (move_count)
-		{
-			move_count[0]++;
-			move_count[11]++;
-		}
-	}
-}

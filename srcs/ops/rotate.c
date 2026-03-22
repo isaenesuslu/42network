@@ -54,18 +54,3 @@ void	rb(t_node **b, bool print, int *move_count)
 		}
 	}
 }
-
-void	rr(t_node **a, t_node **b, bool print, int *move_count)
-{
-	rotate(a);
-	rotate(b);
-	if (print)
-	{
-		write(1, "rr\n", 3);
-		if (move_count)
-		{
-			move_count[0]++;
-			move_count[8]++;
-		}
-	}
-}
