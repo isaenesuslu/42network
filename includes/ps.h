@@ -61,7 +61,6 @@ void	ps_free_args(char **args);
 
 int		ps_get_size(t_node *stack);
 bool	ps_is_sorted(t_node *stack);
-void	ps_set_positions(t_node *stack);
 t_node	*ps_get_last(t_node *stack);
 t_node	*ps_node_new(int value);
 void	ps_node_add_back(t_node **stack, t_node *new);
