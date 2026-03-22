@@ -38,18 +38,6 @@ bool	ps_is_sorted(t_node *stack)
 	return (true);
 }
 
-void	ps_set_positions(t_node *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		stack->pos = i++;
-		stack = stack->next;
-	}
-}
-
 t_node	*ps_get_last(t_node *stack)
 {
 	if (!stack)
