@@ -21,7 +21,6 @@ void	ps_sort_engine(t_node **stack_a, t_node **stack_b, int *move_count);
 
 void	ps_set_rank_indices(t_node *stack);
 void	ps_push_cheapest_to_b(t_node **a, t_node **b, int *move_count);
-void	ps_finalize_rotation(t_node **a, int *move_count);
 int		find_max_val(t_node *stack);
 int		find_min_pos(t_node *stack);
 int		find_max_pos(t_node **stack);

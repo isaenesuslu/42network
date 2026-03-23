@@ -20,11 +20,8 @@ t_node	*ps_node_new(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
-	new->index = 0;
-	new->pos = 0;
-	new->target_pos = 0;
-	new->cost_a = 0;
-	new->cost_b = 0;
+	new->index = -1;
+	new->pos = -1;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
